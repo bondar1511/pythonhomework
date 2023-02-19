@@ -10,9 +10,18 @@ current = 0
 @dp.message_handler(commands=['start', 'старт'])
 async def mes_start(message: types.Message):
     name = message.from_user.first_name
-    await message.answer(f'{name} Добро пожаловать в нашу игру!! Для того чтобы начать игру необходимо написать /new_game. ' 
+    await message.answer(f'{name} добро пожаловать в нашу игру!! Для того чтобы начать игру необходимо написать /new_game. Для изучения правил игры необходимо написать /rules. '                         
                         f'{name} для настройки количества конфет /set. {name} удачи в игре!! ')
     print(message.from_user.id)
+
+
+# добавила команду "правила"
+@dp.message_handler(commands=['rules'])
+async def mes_new_game(message: types.Message): 
+    await message.answer('Это игра называется "Конфетный бот". Правила ее очень просты. Дается определенное количество конфет. Задача  игроков брать по очереди конфеты.'
+                          'Игрок может взять за один ход не больше 28 конфет. Побеждает тот кто возьмет последние оставшиеся конфеты. Удачи в игре!!!! ')
+    
+    
 @dp.message_handler(commands=['new_game'])
 async def mes_new_game(message: types.Message):
     global new_game
@@ -57,7 +66,7 @@ async def mes_set(message: types.Message):
     count = message.text.split()[1]
     if not new_game:
        if count.isdigit():
-           max_count= int(count)
+           max_count = int(count)
            await message.answer(f'Конфет теперь будет {max_count} ')  
        else:
            await message.answer(f'{name}, в данной игре используются только цифры')

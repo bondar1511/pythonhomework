@@ -4,14 +4,27 @@
 # Для n=4 -> [2, 2.25, 2.37, 2.44]
 # Сумма 9.06
 
-n = float(input('Введите число: '))
-list =[]
-sum = 0
-for i in range(n, ((1+1/n)**n)):
+# n = float(input('Введите число: '))
+# # list =[]
+# sum = 0
+# for i in range(n, ((1+1/n)**n)):
      
- for i in list:
+#  for i in list:
+#   while i<len(list):
+#      sum = list[i]+sum
+#      i+=1
+# print(list)
+# print(sum)
+
+
+
+n = float(input('Введите число: '))
+list =[x for x in range(n, ((1+1/n)**n))]
+sum = 0
+ 
+for i in list:
   while i<len(list):
-     sum = list[i]+sum
+     sum = lambda i, sum: i+sum 
      i+=1
 print(list)
 print(sum)

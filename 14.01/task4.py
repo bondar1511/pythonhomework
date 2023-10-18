@@ -132,35 +132,144 @@
 #     _dict[letter] +=1
 
 # print(_dict)
+from collections import Counter
 from itertools import chain, combinations
 
 
 
 
-def find_combinations(m_dict, max_weight):
- sorted_items = sorted(m_dict, key=lambda x: x[1], reverse=True)
+# def find_combinations(m_dict, max_weight):
+#  sorted_items = sorted(m_dict, key=lambda x: x[1], reverse=True)
 
- def find_combinations_re(current_weight, current_comb, rem_items):
-   if current_weight<=max_weight:
-     result.append(current_comb)
-   for i in range(len(rem_items)):
-     n_com = current_comb + [rem_items[i]]
-     n_weight = current_weight = rem_items[i][1]
-     n_remain = rem_items[i+1:]
-     find_combinations_re(n_weight, n_com, n_remain)
- result = [] 
- find_combinations_re(0,[], sorted_items)  
- return result
-m_dict = {
-  "ключи": 0.3,
-  "кошелек": 0.4,
-  "телефон": 0.6,
-  "зарядное устройство": 0.2,
-  "зажигалка": 0.1,
-  "еда": 1.0,
-  "напитки": 1.0,
-}
-max_weight = 3
-combo = find_combinations(m_dict, max_weight)
-for com in combo:
-  print(com)
+#  def find_combinations_re(current_weight, current_comb, rem_items):
+#    if current_weight<=max_weight:
+#      result.append(current_comb)
+#    for i in range(len(rem_items)):
+#      n_com = current_comb + [rem_items[i]]
+#      n_weight = current_weight = rem_items[i][1]
+#      n_remain = rem_items[i+1:]
+#      find_combinations_re(n_weight, n_com, n_remain)
+#  result = [] 
+#  find_combinations_re(0,[], sorted_items)  
+#  return result
+# m_dict = {
+#   "ключи": 0.3,
+#   "кошелек": 0.4,
+#   "телефон": 0.6,
+#   "зарядное устройство": 0.2,
+#   "зажигалка": 0.1,
+#   "еда": 1.0,
+#   "напитки": 1.0,
+# }
+# max_weight = 3
+# combo = find_combinations(m_dict, max_weight)
+# for com in combo:
+#   print(com)
+
+# # items = {"ключи": 0.3,
+#     "кошелек": 0.2,
+#     "телефон": 0.5,
+#     "зажигалка": 0.1
+# }
+
+# max_weight = 1.0
+
+
+# def fill_backpack(items, max_weight):
+#     table = [[0] * (max_weight + 1) for _ in range(len(items) + 1)]
+
+#     for i in range(1, len(items) + 1):
+#       item_weight = items[i - 1]["weight"]
+#       item_value = items[i - 1]["value"]
+
+#     for j in range(1, max_weight + 1):
+#       if item_weight > j:
+#         table[i][j] = table[i - 1][j]
+#       else:
+#         table[i][j] = max(table[i - 1][j], table[i - 1][j - item_weight] + item_value)
+
+#       backpack = {}
+# i, j = len(items), max_weight
+# backpack = fill_backpack(items, max_weight)
+# while i > 0 and j > 0:
+#      if table[i][j] != table[i - 1][j]:
+#         item = items[i - 1]["item"]
+#         weight = items[i - 1]["weight"]
+#         backpack[item] = weight
+#         j -= weight
+#         i -= 1
+            # return backpack
+
+
+# print(backpack)
+
+# def fill_backpack(things, max_weight):
+#     backpack = {}
+#     sorted_things = sorted(things.items(), key=lambda x: x[1], reverse=True)
+
+#     for object, weight in sorted_things:
+#         if weight <= max_weight:
+#            backpack[object] = weight
+#            max_weight -= weight
+
+#     return backpack
+
+# def fill_backpack(things, max_weight):
+#   things =  {"ключи": 0.3,
+#     "кошелек": 0.2,
+#     "телефон": 0.5,
+#     "зажигалка": 0.1
+# }
+#   max_weight = 1.0
+#   result = fill_backpack(things, max_weight)
+#   print(result)
+
+# items = {"ключи": 0.3,
+#     "кошелек": 0.2,
+#     "телефон": 0.5,
+#     "зажигалка": 0.1
+# }
+
+# max_weight = 1.0
+
+
+
+# backpack = {}
+
+
+# for item, weight in items.items():
+#     if weight <= max_weight:
+#         backpack[item] = weight
+#         max_weight -= weight
+
+# print(backpack)
+
+
+
+# def fibonacci():
+#     a, b = 0, 1
+#     for i in range(10):
+#         yield a
+#         a, b = b, a + b
+
+
+list_name = []
+list_salaries = []
+list_bonuses = []
+
+for i in range(3):
+    names = input()
+    salary  = int(input())
+    bonus = input()
+
+    list_name.append(names)
+    list_salaries.append(salary)
+    list_bonuses.append(bonus)
+    
+def generate_bonus_dict(nameses, salaries, bonuses):
+    return{name: salary * float(bonus.rstrip("%"))/100
+           for name, salary, bonus in zip(nameses, salaries, bonuses)}
+
+
+resuilt_dict = generate_bonus_dict(list_name, list_salaries,  list_bonuses)
+print(resuilt_dict)
